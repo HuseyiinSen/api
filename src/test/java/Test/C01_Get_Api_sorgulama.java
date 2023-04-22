@@ -19,6 +19,18 @@ public class C01_Get_Api_sorgulama {
            public void get01(){
     String url="https://restful-booker.herokuapp.com/booking/10";
     Response response=given().when().get(url);
-    response.prettyPrint();
-}
+     response.prettyPrint();
+           //status code’unun 200,
+           System.out.println("Statüs code "+response.statusCode());
+           //ve content type’inin application/json; charset=utf-8,
+           System.out.println("Content Type "+response.contentType());
+           //ve Server isimli Header’in degerinin Cowboy,
+           System.out.println(response.getHeader("Server"));
+           // ve status Line’in HTTP/1.1 200 OK
+           System.out.println(response.statusLine());
+           //ve response suresinin 5 sn’den kisa oldugunu manuel olarak test ediniz.
+           System.out.println(response.getTime());
+
+
+       }
 }
