@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class C09_Post_JsonPathIleBodyTesti {
     @Test
@@ -39,14 +40,15 @@ public class C09_Post_JsonPathIleBodyTesti {
                .put("depositpaid", false)
                .put("bookingdates" ,bookingDates)
                .put("additionalneeds" , "wi-fi");
-
+             System.out.println(booking);
         Response response=given()
                             .contentType(ContentType.JSON)
                             .when()
                             .body(booking.toString())
                             .post(url);
 
-        System.out.println(booking);
+
+        response.prettyPrint();
 
         /*
             donen Response’un,
@@ -65,15 +67,23 @@ public class C09_Post_JsonPathIleBodyTesti {
            response
                    .then()
                    .assertThat()
-             .statusCode(200)
-                   .contentType("application/json; charset=utf-8")
-                   .body("booking.firstname", Matchers.equalTo("Ali")
+                      .statusCode(200)
+                      .contentType("application/json; charset=utf-8")
+                       .body("booking.firstname", equalTo("Ali"),
+                           "booking.lastname",equalTo("Bak"),
+                               "booking.totalprice",equalTo(500),
+                               "booking.depositpaid",equalTo(false),
+                               "booking.bookingdates.checkin",equalTo("2021-06-01"),
+                               "booking.bookingdates.checkout",equalTo("2021-06-10"),
+                               "booking.additionalneeds",equalTo("wi-fi"));
+                              // "booking.totalprice",equalTo(500)
+                               /*
                            ,"booking.lastname",Matchers.equalTo("Bak")
                            ,"booking.totalprice",Matchers.equalTo(500)
                            ,"booking.depositpaid",Matchers.equalTo(false)
                            ,"booking.additionalneeds",Matchers.equalTo("wi-fi")
                            ,"booking.bookingDates.checkin",Matchers.equalTo("2021-06-01")
-                           ,"booking.bookingDates.checkout",Matchers.equalTo("2021-06-10"));
+                           ,"booking.bookingDates.checkout",Matchers.equalTo("2021-06-10"));*/
 
     }
 }
