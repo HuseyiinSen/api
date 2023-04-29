@@ -76,14 +76,7 @@ public class C09_Post_JsonPathIleBodyTesti {
                                "booking.bookingdates.checkin",equalTo("2021-06-01"),
                                "booking.bookingdates.checkout",equalTo("2021-06-10"),
                                "booking.additionalneeds",equalTo("wi-fi"));
-                              // "booking.totalprice",equalTo(500)
-                               /*
-                           ,"booking.lastname",Matchers.equalTo("Bak")
-                           ,"booking.totalprice",Matchers.equalTo(500)
-                           ,"booking.depositpaid",Matchers.equalTo(false)
-                           ,"booking.additionalneeds",Matchers.equalTo("wi-fi")
-                           ,"booking.bookingDates.checkin",Matchers.equalTo("2021-06-01")
-                           ,"booking.bookingDates.checkout",Matchers.equalTo("2021-06-10"));*/
+
 
     }
 }
