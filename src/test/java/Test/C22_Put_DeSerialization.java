@@ -4,11 +4,14 @@ import TestData.TestDataJsonPlaceHolder;
 import baseURL.JsonPlaceHolderBaseURL;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class C22_Put_DeSerialization extends JsonPlaceHolderBaseURL {
      /*
@@ -46,6 +49,13 @@ public class C22_Put_DeSerialization extends JsonPlaceHolderBaseURL {
                 .when()
                 .body(reqBadyMaps).put("/{pp1}/{pp2}");
         response.prettyPrint();
+        HashMap<String,Object> reqMaps=response.as(HashMap.class);
+
+        assertEquals(testDataJsonPlaceHolder.basariliStatusCode,response.getStatusCode());
+        assertEquals(expbodyMaps.get("id"), reqMaps.get("id"));
+        assertEquals(expbodyMaps.get("userId"), reqMaps.get("userId"));
+        assertEquals(expbodyMaps.get("body"), reqMaps.get("body"));
+        assertEquals(expbodyMaps.get("title"), reqMaps.get("title"));
 
 
     }
