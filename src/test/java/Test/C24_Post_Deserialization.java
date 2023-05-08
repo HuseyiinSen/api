@@ -2,10 +2,15 @@ package Test;
 
 import TestData.TestDataHerokuApp;
 import baseURL.HerokuAppBaseUrl;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
+
+import static io.restassured.RestAssured.given;
 
 public class C24_Post_Deserialization extends HerokuAppBaseUrl {
         /*
@@ -49,6 +54,14 @@ public class C24_Post_Deserialization extends HerokuAppBaseUrl {
       TestDataHerokuApp testDataHerokuApp=new TestDataHerokuApp();
       HashMap<String,Object> reqBody= testDataHerokuApp.reqBodyMap();
       HashMap<String,Object> respBody=testDataHerokuApp.resBodyMap();
+    Response response=given()
+            .spec(specHerokuApp)
+            .contentType(ContentType.JSON)
+            .when()
+            .body(reqBody)
+            .post("/{pp1}");
+    response.prettyPrint();
+
 
 
   }
