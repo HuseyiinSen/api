@@ -3,6 +3,7 @@ package Test;
 import TestData.TestDataHerokuApp;
 import baseURL.HerokuAppBaseUrl;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.junit.Assert;
@@ -61,6 +62,7 @@ public class C24_Post_Deserialization extends HerokuAppBaseUrl {
             .body(reqBody)
             .post("/{pp1}");
     response.prettyPrint();
+    JsonPath reqJP=response.jsonPath();
 
 
 
